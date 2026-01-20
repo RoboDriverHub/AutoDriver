@@ -1,0 +1,65 @@
+[project]
+name = "autodriver"
+version = "0.0.1"
+description = "AutoDriver: 基于LangGraph+LLM的DORA/ROS1/ROS2机器人驱动代码自动生成工具"
+authors = [
+    { name = "liuyou", email = "your-email@example.com" },
+]
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+dependencies = [
+    # 核心框架
+    "langgraph>=1.0.6",
+    "langchain>=1.2.4",
+    "langchain-core>=1.2.7",
+    "langchain-community>=0.4.1",
+    "langsmith>=0.6.4",
+    # 配置与模板
+    "python-dotenv>=1.2.1",
+    "PyYAML>=6.0.3",
+    "Jinja2>=3.1.6",
+    "opencv-python>=4.13.0.90",
+    "numpy>=2.4.1",
+    # LLM相关
+    "dashscope>=1.25.8",
+    "requests>=2.32.5",
+    # 向量检索
+    "faiss-cpu>=1.13.2",
+    "sentence-transformers>=5.2.0",
+    # 工具类
+    "pydantic>=2.12.5",
+    "typing-extensions>=4.15.0",
+    "scikit-learn>=1.8.0",
+    "tqdm>=4.67.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "langgraph-cli[inmem]>=0.4.11",
+    "mypy>=1.11.1",
+    "ruff>=0.6.1",
+    "pytest>=8.3.5",
+    "black>=24.0.0",
+    "flake8>=7.0.0",
+]
+ros1 = ["rospy>=1.0.0"]
+ros2 = ["rclpy>=2.0.0"]
+viz = [
+    "matplotlib>=3.8.0",
+    "pydot>=4.0.1",
+    "networkx>=3.6.1",
+]
+
+[build-system]
+requires = ["setuptools>=80.9.0", "wheel>=0.45.1"]
+build-backend = "setuptools.build_meta"
+
+# 核心包配置（无语法错误）
+[tool.setuptools]
+packages = ["src.agent"]
+package-dir = { "agent" = "src/agent" }
+
+# 非代码文件配置
+[tool.setuptools.package-data]
+"*" = ["data/**/*", "static/**/*"]
